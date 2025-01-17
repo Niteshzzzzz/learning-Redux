@@ -4,7 +4,6 @@ import { deleteUser } from '../store/reducers/userReducer'
 
 function Users() {
   const users = useSelector(state => state.userReducer.users)  
-  console.log(users)
   const dispatch = useDispatch()
 
   const deleteHandler = (index) => {
