@@ -1,26 +1,25 @@
 import React from 'react'
-import { useSelector, useDispatch } from 'react-redux'
-import { deleteUser } from './store/reducers/userReducer'
+import { Link, Route, Routes } from "react-router-dom";
+import Home from './components/Home';
+import Users from './components/Users';
+import Products from './components/Products';
 
 function App() {
-  const users = useSelector(state => state.userReducer.users)  
-  console.log(users)
-  const dispatch = useDispatch()
-
-  const deleteHandler = (index) => {
-    dispatch(deleteUser(index))
-  }
-
   return (
-    <div className='bg-red-100 w-1/2 m-auto p-4'>
-      <h1 className='text-red-700 text-4xl mb-4 font-bold'>Users:</h1>
-      <ul>
-        {
-          users.map((user, index) => {
-            return <li key={user.id} className='text-xl'>{user.name}<span className='text-red-500 font-bold ml-2 cursor-pointer' onClick={() => deleteHandler(index)}>X</span></li>
-          })
-        }
-      </ul>
+    <div className='w-screen h-screen'>
+      <nav className='flex justify-center items-center gap-10 py-5 text-xl font-semibold'>
+        <Link to={'/'}>Home</Link>
+        <Link to={'/users'}>Users</Link>
+        <Link to={'/products'}>Products</Link>
+      </nav>
+      <hr />
+
+      <Routes>
+        <Route path='/' element={<Home />} />
+        <Route path='/users' element={<Users />} />
+        <Route path='/products' element={<Products />} />
+      </Routes>
+
     </div>
   )
 }
